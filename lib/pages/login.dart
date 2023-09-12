@@ -13,11 +13,14 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
-      ),
       body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 0.0),
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+            Colors.orange[900]!,
+            Colors.orange[800]!,
+            Colors.orange[400]!
+          ])),
           child: Column(
             children: [
               const Text("Login"),
