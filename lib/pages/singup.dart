@@ -15,7 +15,7 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Signup"),
+        title: const Text("Signup"),
         centerTitle: true,
       ),
       body: Container(
@@ -35,19 +35,28 @@ class _SignupState extends State<Signup> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
+                children: <Widget>[
+                  const Text(
                     "Signup",
                     style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "Thank you for your interest",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   const SizedBox(height: 20),
+                  Expanded(
+                      child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(60),
+                            topRight: Radius.circular(60))),
+                    child: const SingleChildScrollView(),
+                  ))
                 ],
               ),
             ),
