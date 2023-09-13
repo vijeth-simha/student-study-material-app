@@ -56,80 +56,106 @@ class _LoginState extends State<Login> {
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(30),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 13.0, // soften the shadow
-                                spreadRadius: 5.0, //extend the shadow
-                                offset: Offset(
-                                  5.0, // Move to right 5  horizontally
-                                  5.0, // Move to bottom 5 Vertically
-                                ),
-                              )
-                            ],
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                          child: Form(
-                              key: formKey,
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    controller: emailController,
-                                    decoration: const InputDecoration(
-                                        labelText: "Enter your email"),
-                                    validator: (value) {
-                                      if (value!.isEmpty ||
-                                          !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                              .hasMatch(value)) {
-                                        return "Enter the email correctly";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                  ),
-                                  const SizedBox(height: 20),
-                                  TextFormField(
-                                    controller: emailController,
-                                    decoration: const InputDecoration(
-                                        labelText: "Enter your password"),
-                                    validator: (value) {
-                                      if (value!.isEmpty ||
-                                          !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                              .hasMatch(value)) {
-                                        return "Enter the email correctly";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 40,
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 50),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        color: Colors.blue[900]),
-                                    child: const Center(
-                                      child: Text(
-                                        "Login",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 13.0, // soften the shadow
+                                    spreadRadius: 5.0, //extend the shadow
+                                    offset: Offset(
+                                      5.0, // Move to right 5  horizontally
+                                      5.0, // Move to bottom 5 Vertically
                                     ),
                                   )
                                 ],
-                              )),
-                        ),
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0))),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 20),
+                              child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
+                                        controller: emailController,
+                                        decoration: const InputDecoration(
+                                            labelText: "Enter your email"),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                                  .hasMatch(value)) {
+                                            return "Enter the email correctly";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 20),
+                                      TextFormField(
+                                        controller: emailController,
+                                        decoration: const InputDecoration(
+                                            labelText: "Enter your password"),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                                  .hasMatch(value)) {
+                                            return "Enter the email correctly";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        height: 40,
+                                      ),
+                                      Container(
+                                        height: 50,
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 50),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            color: Colors.blue[900]),
+                                        child: Center(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors
+                                                    .blue[900], // background
+                                                onPrimary: Colors.white,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            60.0)),
+                                                fixedSize:
+                                                    const Size(700.0, 10.0)),
+                                            onPressed: () {},
+                                            child: const Text('Login'),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.blue[900], // background
+                                onPrimary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                fixedSize: const Size(700.0, 10.0)),
+                            onPressed: () {},
+                            child: const Text('Signup'),
+                          ),
+                        ],
                       ),
                     ),
                   ),
