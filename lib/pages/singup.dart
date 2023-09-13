@@ -8,6 +8,9 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +46,8 @@ class _SignupState extends State<Signup> {
                   Text(
                     "Thank you for your interest",
                     style: TextStyle(color: Colors.white, fontSize: 18),
-                  )
+                  ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
