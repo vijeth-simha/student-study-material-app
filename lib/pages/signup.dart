@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   @override
@@ -32,14 +32,14 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const <Widget>[
                     Text(
-                      "Login",
+                      "Singup",
                       style: TextStyle(color: Colors.white, fontSize: 40),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "Welcome Back",
+                      "Create your account",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     )
                   ],
@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
                                                 fixedSize:
                                                     const Size(700.0, 10.0)),
                                             onPressed: () {},
-                                            child: const Text('Login'),
+                                            child: const Text('Signup'),
                                           ),
                                         ),
                                       )
@@ -153,9 +153,9 @@ class _LoginState extends State<Login> {
                                     borderRadius: BorderRadius.circular(10.0)),
                                 fixedSize: const Size(700.0, 10.0)),
                             onPressed: () {
-                              Navigator.pushNamed(context, '/signup');
+                              Navigator.pushNamed(context, '/login');
                             },
-                            child: const Text('Signup'),
+                            child: const Text('Login'),
                           ),
                         ],
                       ),
