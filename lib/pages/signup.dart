@@ -9,7 +9,9 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +84,21 @@ class _SignupState extends State<Signup> {
                                   child: Column(
                                     children: [
                                       TextFormField(
+                                        controller: nameController,
+                                        decoration: const InputDecoration(
+                                            labelText: "Enter your full name"),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(r'^[a-zA-Z]+$')
+                                                  .hasMatch(value)) {
+                                            return "Enter the name correctly";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 20),
+                                      TextFormField(
                                         controller: emailController,
                                         decoration: const InputDecoration(
                                             labelText: "Enter your email"),
@@ -97,7 +114,7 @@ class _SignupState extends State<Signup> {
                                       ),
                                       const SizedBox(height: 20),
                                       TextFormField(
-                                        controller: emailController,
+                                        controller: passwordController,
                                         decoration: const InputDecoration(
                                             labelText: "Enter your password"),
                                         validator: (value) {
