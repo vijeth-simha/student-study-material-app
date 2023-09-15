@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,6 +12,17 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
+
+  handleLogin() async {
+    Response response = await post(Uri.https(
+        '04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
+        '/api/v1/auth/login'));
+    if (response.statusCode == 200) {
+      final Map<dynamic, dynamic> responseData = json.decode(response.body);
+      print(responseData);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +146,9 @@ class _LoginState extends State<Login> {
                                                             60.0)),
                                                 fixedSize:
                                                     const Size(700.0, 10.0)),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              handleLogin();
+                                            },
                                             child: const Text('Login'),
                                           ),
                                         ),

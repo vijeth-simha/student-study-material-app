@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -12,6 +14,17 @@ class _SignupState extends State<Signup> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  handleSignup() async {
+    Response response = await post(Uri.https(
+        '04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
+        '/api/v1/auth/register'));
+    if (response.statusCode == 200) {
+      final Map<dynamic, dynamic> responseData = json.decode(response.body);
+      print(responseData);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,7 +163,9 @@ class _SignupState extends State<Signup> {
                                                             60.0)),
                                                 fixedSize:
                                                     const Size(700.0, 10.0)),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              handleSignup();
+                                            },
                                             child: const Text('Signup'),
                                           ),
                                         ),
