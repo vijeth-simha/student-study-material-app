@@ -10,6 +10,7 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  String token = '';
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -21,7 +22,10 @@ class _SignupState extends State<Signup> {
         '/api/v1/auth/register'));
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
-      print(responseData);
+      // print(responseData['accessToken']);
+      setState(() {
+        token = responseData['accessToken'];
+      });
     }
   }
 
@@ -93,85 +97,86 @@ class _SignupState extends State<Signup> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 20),
                               child: Form(
-                                  key: formKey,
-                                  child: Column(
-                                    children: [
-                                      TextFormField(
-                                        controller: nameController,
-                                        decoration: const InputDecoration(
-                                            labelText: "Enter your full name"),
-                                        validator: (value) {
-                                          if (value!.isEmpty ||
-                                              !RegExp(r'^[a-zA-Z]+$')
-                                                  .hasMatch(value)) {
-                                            return "Enter the name correctly";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                      ),
-                                      const SizedBox(height: 20),
-                                      TextFormField(
-                                        controller: emailController,
-                                        decoration: const InputDecoration(
-                                            labelText: "Enter your email"),
-                                        validator: (value) {
-                                          if (value!.isEmpty ||
-                                              !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                                  .hasMatch(value)) {
-                                            return "Enter the email correctly";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                      ),
-                                      const SizedBox(height: 20),
-                                      TextFormField(
-                                        controller: passwordController,
-                                        decoration: const InputDecoration(
-                                            labelText: "Enter your password"),
-                                        validator: (value) {
-                                          if (value!.isEmpty ||
-                                              !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                                  .hasMatch(value)) {
-                                            return "Enter the email correctly";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                      ),
-                                      const SizedBox(
-                                        height: 40,
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 50),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            color: Colors.blue[900]),
-                                        child: Center(
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                primary: Colors
-                                                    .blue[900], // background
-                                                onPrimary: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            60.0)),
-                                                fixedSize:
-                                                    const Size(700.0, 10.0)),
-                                            onPressed: () {
-                                              handleSignup();
-                                            },
-                                            child: const Text('Signup'),
-                                          ),
+                                key: formKey,
+                                child: Column(
+                                  children: [
+                                    TextFormField(
+                                      controller: nameController,
+                                      decoration: const InputDecoration(
+                                          labelText: "Enter your full name"),
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^[a-zA-Z]+$')
+                                                .hasMatch(value)) {
+                                          return "Enter the name correctly";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(height: 20),
+                                    TextFormField(
+                                      controller: emailController,
+                                      decoration: const InputDecoration(
+                                          labelText: "Enter your email"),
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                                .hasMatch(value)) {
+                                          return "Enter the email correctly";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(height: 20),
+                                    TextFormField(
+                                      controller: passwordController,
+                                      decoration: const InputDecoration(
+                                          labelText: "Enter your password"),
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                                .hasMatch(value)) {
+                                          return "Enter the email correctly";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    Container(
+                                      height: 50,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 50),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.blue[900]),
+                                      child: Center(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors
+                                                  .blue[900], // background
+                                              onPrimary: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          60.0)),
+                                              fixedSize:
+                                                  const Size(700.0, 10.0)),
+                                          onPressed: () {
+                                            handleSignup();
+                                          },
+                                          child: const Text('Signup'),
                                         ),
-                                      )
-                                    ],
-                                  )),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(
