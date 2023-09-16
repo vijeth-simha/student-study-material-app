@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:student_study_material/models/storage_items.dart';
 import 'dart:convert';
+
+import 'package:student_study_material/services/storage_service.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +15,19 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
+  final StorageService _storageService = StorageService();
+  late List<StorageItem> _items;
+
+  @override
+  void initState() {
+    super.initState();
+    initList();
+  }
+
+  void initList() async {
+    _items = await _storageService.readAllSecureData();
+    setState(() {});
+  }
 
   handleLogin() async {
     Response response = await post(Uri.https(
