@@ -13,6 +13,11 @@ class StorageService {
         key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
   }
 
+  Future<void> writeSecureJSONData(StorageItem newItem) async {
+    await _secureStorage.write(
+        key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
+  }
+
   Future<String?> readSecureData(String key) async {
     var readData =
         await _secureStorage.read(key: key, aOptions: _getAndroidOptions());
