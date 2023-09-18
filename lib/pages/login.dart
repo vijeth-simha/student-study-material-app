@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:student_study_material/models/storage_items.dart';
 import 'dart:convert';
-
 import 'package:student_study_material/services/storage_service.dart';
 
 class Login extends StatefulWidget {
@@ -12,14 +11,25 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> with TickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final StorageService _storageService = StorageService();
   late List<StorageItem> _items;
+  late AnimationController controller;
+  bool showSpinner = false;
 
   @override
   void initState() {
+    controller = AnimationController(
+      /// [AnimationController]s can be created with `vsync: this` because of
+      /// [TickerProviderStateMixin].
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: true);
     super.initState();
     initList();
   }
@@ -30,6 +40,9 @@ class _LoginState extends State<Login> {
   }
 
   handleLogin() async {
+    setState(() {
+      showSpinner = true;
+    });
     Response response = await post(Uri.https(
         '04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
         '/api/v1/auth/login'));
@@ -161,11 +174,34 @@ class _LoginState extends State<Login> {
                                                         BorderRadius.circular(
                                                             60.0)),
                                                 fixedSize:
-                                                    const Size(700.0, 10.0)),
+                                                    const Size(500.0, 10.0)),
                                             onPressed: () {
                                               handleLogin();
                                             },
-                                            child: const Text('Login'),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  height: 25.0,
+                                                  width: 25.0,
+                                                  child: Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      value: controller.value,
+                                                      semanticsLabel:
+                                                          'Circular progress indicator',
+                                                      strokeWidth: 2.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 10.0),
+                                                    child: const Text('Login')),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       )
