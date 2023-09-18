@@ -29,7 +29,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     )..addListener(() {
         setState(() {});
       });
-    controller.repeat(reverse: true);
+    controller.repeat(reverse: false);
     super.initState();
     initList();
   }
@@ -48,6 +48,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         '/api/v1/auth/login'));
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
+      setState(() {
+        showSpinner = false;
+      });
       print(responseData);
     }
   }
@@ -182,24 +185,29 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                SizedBox(
-                                                  height: 25.0,
-                                                  width: 25.0,
-                                                  child: Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      value: controller.value,
-                                                      semanticsLabel:
-                                                          'Circular progress indicator',
-                                                      strokeWidth: 2.0,
-                                                    ),
-                                                  ),
-                                                ),
+                                                showSpinner
+                                                    ? SizedBox(
+                                                        height: 25.0,
+                                                        width: 25.0,
+                                                        child: Center(
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            value: controller
+                                                                .value,
+                                                            semanticsLabel:
+                                                                'Circular progress indicator',
+                                                            strokeWidth: 2.0,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Container(),
                                                 Container(
                                                     margin:
                                                         const EdgeInsets.only(
                                                             left: 10.0),
-                                                    child: const Text('Login')),
+                                                    child: Text(showSpinner
+                                                        ? 'Submitting..'
+                                                        : 'Login')),
                                               ],
                                             ),
                                           ),
