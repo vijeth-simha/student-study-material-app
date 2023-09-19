@@ -34,7 +34,7 @@ class NavigationDrawer extends StatelessWidget {
               child: Text('Drawer Header'),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              title: const Text('Home'),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -42,7 +42,7 @@ class NavigationDrawer extends StatelessWidget {
             ),
             const Divider(color: Color.fromARGB(179, 243, 0, 0)),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('Types'),
               onTap: () {
                 // Update the state of the app.
                 // ...
