@@ -51,7 +51,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       setState(() {
         showSpinner = false;
       });
-      print(responseData);
+      if (mounted) {
+        Navigator.pushNamed(context, '/dashboard');
+      }
     }
   }
 
