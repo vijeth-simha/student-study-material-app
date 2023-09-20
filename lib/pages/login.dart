@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:student_study_material/models/auth.dart';
 import 'package:student_study_material/models/storage_items.dart';
 import 'dart:convert';
 import 'package:student_study_material/services/storage_service.dart';
@@ -55,11 +58,13 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
           'password': passwordController.text,
         }));
     if (response.statusCode == 200) {
-      final Map<dynamic, dynamic> responseData = json.decode(response.body);
+      dynamic responseData = json.decode(response.body);
       setState(() {
         showSpinner = false;
       });
       if (mounted) {
+        // responseData.key = "authInfo";
+        _storageService.writeSecureJSONData(responseData, "authInfo");
         Navigator.pushNamed(context, '/dashboard');
       }
     }

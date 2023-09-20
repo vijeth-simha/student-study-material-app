@@ -1,4 +1,6 @@
+import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
+import 'package:student_study_material/models/storage_items.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -8,6 +10,21 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  late List<StorageItem> _items;
+  final StorageService _storageService = StorageService();
+
+  @override
+  void initState() {
+    super.initState();
+    initList();
+  }
+
+  void initList() async {
+    _items = await _storageService.readAllSecureData();
+    print(_storageService.readSecureData('authInfo'));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
