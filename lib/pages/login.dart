@@ -14,6 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> with TickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final StorageService _storageService = StorageService();
   late List<StorageItem> _items;
   late AnimationController controller;
@@ -43,9 +44,16 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     setState(() {
       showSpinner = true;
     });
-    Response response = await post(Uri.https(
-        '04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
-        '/api/v1/auth/login'));
+    Response response = await post(
+        Uri.https('04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
+            '/api/v1/auth/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': emailController.text,
+          'password': passwordController.text,
+        }));
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
       setState(() {
@@ -144,14 +152,14 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                       ),
                                       const SizedBox(height: 20),
                                       TextFormField(
-                                        controller: emailController,
+                                        controller: passwordController,
                                         decoration: const InputDecoration(
                                             labelText: "Enter your password"),
                                         validator: (value) {
                                           if (value!.isEmpty ||
                                               !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
                                                   .hasMatch(value)) {
-                                            return "Enter the email correctly";
+                                            return "Enter the password correctly";
                                           } else {
                                             return null;
                                           }
