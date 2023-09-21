@@ -58,7 +58,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
           'password': passwordController.text,
         }));
     if (response.statusCode == 200) {
-      dynamic responseData = json.decode(response.body);
+      Auth responseData = json.decode(response.body);
       setState(() {
         showSpinner = false;
       });

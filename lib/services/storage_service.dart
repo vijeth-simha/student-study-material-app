@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:student_study_material/models/auth.dart';
 import 'package:student_study_material/models/storage_items.dart';
 
 class StorageService {
@@ -14,9 +15,8 @@ class StorageService {
         key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
   }
 
-  Future<void> writeSecureJSONData(
-      Map<String, dynamic> newItem, String key) async {
-    dynamic jsonData = jsonEncode(newItem);
+  Future<void> writeSecureJSONData(Auth newItem, String key) async {
+    String jsonData = jsonEncode(newItem);
     await _secureStorage.write(
         key: key, value: jsonData, aOptions: _getAndroidOptions());
   }
