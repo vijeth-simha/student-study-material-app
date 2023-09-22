@@ -34,7 +34,44 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: const Text('Hello World'),
+      body: Container(
+          child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    debugPrint('Card tapped.');
+                  },
+                  child: Column(
+                    children: [
+                      Image.network(
+                          'https://assets.thehansindia.com/h-upload/2020/10/11/1004990-ksrtc.webp'),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    debugPrint('Card tapped.');
+                  },
+                  child: Column(
+                    children: [
+                      Image.network(
+                          'https://assets.thehansindia.com/h-upload/2020/10/11/1004990-ksrtc.webp'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      )),
       drawer: const NavigationDrawer(),
     );
   }
