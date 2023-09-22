@@ -161,9 +161,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                             labelText: "Enter your password"),
                                         validator: (value) {
                                           if (value!.isEmpty ||
-                                              !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                              !RegExp('[a-zA-Z]')
                                                   .hasMatch(value)) {
-                                            return "Enter the password correctly";
+                                            return "Enter the name correctly";
                                           } else {
                                             return null;
                                           }
@@ -193,7 +193,10 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                                 fixedSize:
                                                     const Size(500.0, 10.0)),
                                             onPressed: () {
-                                              handleLogin();
+                                              if (formKey.currentState!
+                                                  .validate()) {
+                                                handleLogin();
+                                              }
                                             },
                                             child: Row(
                                               mainAxisAlignment:
