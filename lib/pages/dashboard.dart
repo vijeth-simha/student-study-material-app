@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:student_study_material/models/storage_items.dart';
@@ -24,10 +23,11 @@ class _DashboardState extends State<Dashboard> {
   void initList() async {
     _items = await _storageService.readAllSecureData();
     setState(() {});
-    _storageService.readSecureData('authInfo').then(((value) {
-      dynamic test = jsonDecode(value!);
-      print(test["accessToken"]);
-    }));
+    // _storageService.readSecureData('authInfo').then(((String? value) {
+    //   dynamic test = jsonDecode(value!);
+    //   // Auth values = Auth.fromJson(test);
+    //   print(test);
+    // }));
   }
 
   @override

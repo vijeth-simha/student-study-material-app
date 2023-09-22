@@ -15,7 +15,8 @@ class StorageService {
         key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
   }
 
-  Future<void> writeSecureJSONData(Auth newItem, String key) async {
+  Future<void> writeSecureJSONData(
+      Map<String, dynamic> newItem, String key) async {
     String jsonData = jsonEncode(newItem);
     await _secureStorage.write(
         key: key, value: jsonData, aOptions: _getAndroidOptions());
