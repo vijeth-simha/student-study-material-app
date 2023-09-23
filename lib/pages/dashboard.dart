@@ -27,6 +27,7 @@ class _DashboardState extends State<Dashboard> {
     //   // Auth values = Auth.fromJson(test);
     //   print(test);
     // }));
+    print(_items);
   }
 
   @override

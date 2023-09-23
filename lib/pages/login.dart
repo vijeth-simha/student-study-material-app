@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:student_study_material/models/storage_items.dart';
 import 'dart:convert';
 import 'package:student_study_material/services/storage_service.dart';
 
@@ -18,7 +15,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final StorageService _storageService = StorageService();
-  late List<StorageItem> _items;
   late AnimationController controller;
   bool showSpinner = false;
 
@@ -38,7 +34,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   }
 
   void initList() async {
-    _items = await _storageService.readAllSecureData();
     setState(() {});
   }
 
