@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:student_study_material/models/auth.dart';
 import 'package:student_study_material/models/storage_items.dart';
 
 class StorageService {
