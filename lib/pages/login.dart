@@ -80,11 +80,11 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               const SizedBox(
                 height: 80,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
+              const Padding(
+                padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text(
                       "Login",
                       style: TextStyle(color: Colors.white, fontSize: 40),
@@ -178,9 +178,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                         child: Center(
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                                primary: Colors
-                                                    .blue[900], // background
-                                                onPrimary: Colors.white,
+                                                foregroundColor: Colors.white,
+                                                backgroundColor:
+                                                    Colors.blue[900],
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -234,8 +234,8 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[900], // background
-                                onPrimary: Colors.white,
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.blue[900],
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
                                 fixedSize: const Size(700.0, 10.0)),
