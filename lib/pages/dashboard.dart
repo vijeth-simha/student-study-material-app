@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +42,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: Container(
-          child: Column(
+      body: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,7 +78,7 @@ class _DashboardState extends State<Dashboard> {
             ],
           )
         ],
-      )),
+      ),
       drawer: const NavigationDrawer(),
     );
   }
