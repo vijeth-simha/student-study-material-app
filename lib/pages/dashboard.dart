@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:student_study_material/models/storage_items.dart';
@@ -22,12 +25,19 @@ class _DashboardState extends State<Dashboard> {
   void initList() async {
     _items = await _storageService.readAllSecureData();
     setState(() {});
+    Response response = await get(
+      Uri.https('e3ba4fbc-5f1f-41ae-83ae-f11c62202105.mock.pstmn.io',
+          'api/v1/category/get-all-categories'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
     // _storageService.readSecureData('authInfo').then(((String? value) {
     //   dynamic test = jsonDecode(value!);
     //   // Auth values = Auth.fromJson(test);
     //   print(test);
     // }));
-    print(_items);
+    print(response);
   }
 
   @override
