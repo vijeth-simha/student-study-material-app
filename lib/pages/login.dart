@@ -42,7 +42,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       showSpinner = true;
     });
     Response response = await post(
-        Uri.https('04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
+        Uri.https('658c4bf7-8882-45f0-bae2-9d3f36443e22.mock.pstmn.io',
             '/api/v1/auth/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -61,6 +61,10 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         _storageService.writeSecureJSONData(responseData, "authInfo");
         Navigator.pushNamed(context, '/dashboard');
       }
+    } else {
+      setState(() {
+        showSpinner = false;
+      });
     }
   }
 

@@ -22,9 +22,8 @@ class _DashboardState extends State<Dashboard> {
 
   void initList() async {
     _items = await _storageService.readAllSecureData();
-    setState(() {});
-    Response response = await get(
-      Uri.https('e3ba4fbc-5f1f-41ae-83ae-f11c62202105.mock.pstmn.io',
+    final response = await get(
+      Uri.https('658c4bf7-8882-45f0-bae2-9d3f36443e22.mock.pstmn.io',
           'api/v1/category/get-all-categories'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
