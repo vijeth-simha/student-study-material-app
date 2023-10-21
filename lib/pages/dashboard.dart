@@ -1,5 +1,6 @@
 // import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
+import 'package:student_study_material/models/categories.dart';
 import 'package:student_study_material/services/api_services.dart';
 // import 'package:student_study_material/models/storage_items.dart';
 
@@ -11,7 +12,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final categories = Category();
+  var categories = Category();
+  List<CategorySchema> categoriesList = [];
   // late List<StorageItem> _items;
   // final StorageService _storageService = StorageService();
 
@@ -24,17 +26,27 @@ class _DashboardState extends State<Dashboard> {
   void initList() async {
     // _items = await _storageService.readAllSecureData();
     await categories.getAllCategories();
-
-    print('==================');
-    print(categories.categoriesList);
-    print('==================');
+    setState(() {
+      // categories = categories.categoriesList;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: const Text("djks"),
+      body: ListView.builder(
+          itemCount: categories.categoriesList.length,
+          itemBuilder: ((context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                width: double.maxFinite,
+                child: Column(
+                    children: [Text(categories.categoriesList[index].title)]),
+              ),
+            );
+          })),
       drawer: const NavigationDrawer(),
     );
   }
