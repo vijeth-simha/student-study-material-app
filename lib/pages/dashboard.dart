@@ -1,7 +1,7 @@
-import 'package:http/http.dart';
-import 'package:student_study_material/services/storage_service.dart';
+// import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
-import 'package:student_study_material/models/storage_items.dart';
+import 'package:student_study_material/services/api_services.dart';
+// import 'package:student_study_material/models/storage_items.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -11,8 +11,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  late List<StorageItem> _items;
-  final StorageService _storageService = StorageService();
+  final categories = Category();
+  // late List<StorageItem> _items;
+  // final StorageService _storageService = StorageService();
 
   @override
   void initState() {
@@ -21,63 +22,19 @@ class _DashboardState extends State<Dashboard> {
   }
 
   void initList() async {
-    _items = await _storageService.readAllSecureData();
-    final response = await get(
-      Uri.https('658c4bf7-8882-45f0-bae2-9d3f36443e22.mock.pstmn.io',
-          'api/v1/category/get-all-categories'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
-    // _storageService.readSecureData('authInfo').then(((String? value) {
-    //   dynamic test = jsonDecode(value!);
-    //   // Auth values = Auth.fromJson(test);
-    //   print(test);
-    // }));
-    print(response);
+    // _items = await _storageService.readAllSecureData();
+    await categories.getAllCategories();
+
+    print('==================');
+    print(categories.categoriesList);
+    print('==================');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: Column(
-                    children: [
-                      Image.network(
-                          'https://assets.thehansindia.com/h-upload/2020/10/11/1004990-ksrtc.webp'),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    debugPrint('Card tapped.');
-                  },
-                  child: Column(
-                    children: [
-                      Image.network(
-                          'https://assets.thehansindia.com/h-upload/2020/10/11/1004990-ksrtc.webp'),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+      body: const Text("djks"),
       drawer: const NavigationDrawer(),
     );
   }
