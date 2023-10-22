@@ -35,16 +35,37 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: ListView.builder(
-          itemCount: categories.categoriesList.length,
+      body: GridView.builder(
+          scrollDirection: Axis.vertical,
+          physics: const BouncingScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1,
+          ),
+          itemCount: categoriesList.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: double.maxFinite,
-                child: Column(children: [Text(categoriesList[index].title)]),
+            return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(
+                width: 180, // Adjust the width as needed
+                height: 200,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0)),
+                  color: Colors.white,
+                  elevation: 0.4,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12.0),
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [Text(categoriesList[index].title)],
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            );
+            ]);
           })),
       drawer: const NavigationDrawer(),
     );
