@@ -11,17 +11,22 @@ class SemesterPage extends StatefulWidget {
 
 class _SemesterPageState extends State<SemesterPage> {
   Map<String, dynamic> routeArguments = {};
-  int categoryId = 3;
+  int categoryId = 0;
   Semester semester = Semester();
   List<SemesterSchema> semesterList = [];
 
   @override
-  void initState() {
-    super.initState();
-    initializeSemesterList();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeArguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    // print('test............$routeArguments');
+    categoryId = routeArguments["categoryId"];
+
+    initializeSemesterList(categoryId);
   }
 
-  void initializeSemesterList() async {
+  void initializeSemesterList(int categoryId) async {
     // print('semesterList $semesterList');
 
     await semester.getAllSemesters(categoryId.toString());
@@ -32,12 +37,6 @@ class _SemesterPageState extends State<SemesterPage> {
 
   @override
   Widget build(BuildContext context) {
-    routeArguments =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    // print('test............$routeArguments');
-    categoryId = routeArguments["categoryId"];
-    print('semesterList $semesterList');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Semester"),
@@ -49,8 +48,14 @@ class _SemesterPageState extends State<SemesterPage> {
               crossAxisCount: 2, childAspectRatio: 1),
           itemCount: 3,
           itemBuilder: ((context, index) {
-            return const Row(
-              children: [Text("dsoids")],
+            return Row(
+              children: [
+                Card(
+                  child: Center(
+                    child: Text("card $index"),
+                  ),
+                )
+              ],
             );
           })),
     );
