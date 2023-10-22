@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
     // _items = await _storageService.readAllSecureData();
     await categories.getAllCategories();
     setState(() {
-      // categories = categories.categoriesList;
+      categoriesList = categories.categoriesList;
     });
   }
 
@@ -42,8 +42,7 @@ class _DashboardState extends State<Dashboard> {
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(
                 width: double.maxFinite,
-                child: Column(
-                    children: [Text(categories.categoriesList[index].title)]),
+                child: Column(children: [Text(categoriesList[index].title)]),
               ),
             );
           })),
