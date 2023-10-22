@@ -31,6 +31,12 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+  void navigateToSemesters(id) {
+    if (mounted) {
+      Navigator.pushNamed(context, '/semesters');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +53,7 @@ class _DashboardState extends State<Dashboard> {
             return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
                 width: 180, // Adjust the width as needed
-                height: 200,
+                height: 250,
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0)),
@@ -55,11 +61,27 @@ class _DashboardState extends State<Dashboard> {
                   elevation: 0.4,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12.0),
-                    onTap: () {},
+                    onTap: () => navigateToSemesters(categoriesList[index].id),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
-                        children: [Text(categoriesList[index].title)],
+                        children: [
+                          ClipRRect(
+                            child: Image.network(
+                              categoriesList[index].categoryPic,
+                              width: double.maxFinite,
+                              height: 130,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            categoriesList[index].title,
+                            style: const TextStyle(fontSize: 15),
+                          )
+                        ],
                       ),
                     ),
                   ),
