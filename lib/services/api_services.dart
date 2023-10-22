@@ -8,7 +8,7 @@ class Category {
   Future<void> getAllCategories() async {
     try {
       Response response = await get(Uri.https(
-          '658c4bf7-8882-45f0-bae2-9d3f36443e22.mock.pstmn.io',
+          '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
           'api/v1/category/get-all-categories'));
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
