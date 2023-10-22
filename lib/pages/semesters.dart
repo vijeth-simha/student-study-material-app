@@ -35,6 +35,8 @@ class _SemesterPageState extends State<SemesterPage> {
     });
   }
 
+  void navigateToSubjects(semesterId) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,17 +48,46 @@ class _SemesterPageState extends State<SemesterPage> {
           physics: const BouncingScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 1),
-          itemCount: 3,
+          itemCount: semesterList.length,
           itemBuilder: ((context, index) {
-            return Row(
-              children: [
-                Card(
-                  child: Center(
-                    child: Text("card $index"),
+            return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(
+                width: 180, // Adjust the width as needed
+                height: 300,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0)),
+                  color: Colors.white,
+                  elevation: 0.4,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12.0),
+                    onTap: () => navigateToSubjects(semesterList[index].id),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            child: Image.network(
+                              semesterList[index].semesterPic,
+                              width: double.maxFinite,
+                              height: 110,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            semesterList[index].title,
+                            style: const TextStyle(fontSize: 15),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                )
-              ],
-            );
+                ),
+              ),
+            ]);
           })),
     );
   }
