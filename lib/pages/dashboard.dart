@@ -32,9 +32,10 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  void navigateToSemesters(id) {
+  void navigateToSemesters(int categoryId) {
     if (mounted) {
-      Navigator.pushNamed(context, '/semesters');
+      Navigator.pushNamed(context, '/semesters',
+          arguments: {'categoryId': categoryId});
     }
   }
 

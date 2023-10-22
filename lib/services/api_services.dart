@@ -17,10 +17,10 @@ class Category {
             .map((category) => CategorySchema.fromJson(category))
             .toList();
       } else {
-        throw Exception('Failed to load posts');
+        throw Exception('Failed to load categories');
       }
     } catch (e) {
-      throw Exception('Failed to load posts $e');
+      throw Exception('Failed to load categories $e');
     }
   }
 }
@@ -28,15 +28,18 @@ class Category {
 class Semester {
   List<SemesterSchema> semesterList = [];
 
-  Future<void> getAllSemesters() async {
+  Future<void> getAllSemesters(String categoryId) async {
+    // print(categoryId);
     try {
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/category/get-all-categories'));
+          'api/v1/semester/get-all-semesters',
+          {'categoryId': categoryId}));
       if (response.statusCode == 200) {
+        print(response.body);
         final List<dynamic> responseData = json.decode(response.body);
         semesterList = responseData
-            .map((category) => SemesterSchema.fromJson(category))
+            .map((semester) => SemesterSchema.fromJson(semester))
             .toList();
       } else {
         throw Exception('Failed to load semesters');
