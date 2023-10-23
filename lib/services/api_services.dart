@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:student_study_material/models/categories.dart';
 import 'package:student_study_material/models/semester.dart';
+import 'package:student_study_material/models/subject.dart';
 
 class Category {
   List<CategorySchema> categoriesList = [];
@@ -38,6 +39,29 @@ class Semester {
         final List<dynamic> responseData = json.decode(response.body);
         semesterList = responseData
             .map((semester) => SemesterSchema.fromJson(semester))
+            .toList();
+      } else {
+        throw Exception('Failed to load semesters');
+      }
+    } catch (e) {
+      throw Exception('Failed to load semesters $e');
+    }
+  }
+}
+
+class Subject {
+  List<SubjectSchema> semesterList = [];
+
+  Future<void> getAllSemesters(String subjectId) async {
+    try {
+      Response response = await get(Uri.https(
+          '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
+          'api/v1/semester/get-all-subjects',
+          {'subjectId': subjectId}));
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = json.decode(response.body);
+        semesterList = responseData
+            .map((semester) => SubjectSchema.fromJson(semester))
             .toList();
       } else {
         throw Exception('Failed to load semesters');
