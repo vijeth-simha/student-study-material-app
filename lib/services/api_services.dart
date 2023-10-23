@@ -29,7 +29,6 @@ class Semester {
   List<SemesterSchema> semesterList = [];
 
   Future<void> getAllSemesters(String categoryId) async {
-    print(categoryId);
     try {
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
