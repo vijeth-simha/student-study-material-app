@@ -35,7 +35,12 @@ class _SemesterPageState extends State<SemesterPage> {
     });
   }
 
-  void navigateToSubjects(semesterId) {}
+  void navigateToSubjectsPage(semesterId) {
+    if (mounted) {
+      Navigator.pushNamed(context, "/subjects",
+          arguments: {'semesterId': semesterId});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,7 @@ class _SemesterPageState extends State<SemesterPage> {
                   elevation: 0.4,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12.0),
-                    onTap: () => navigateToSubjects(semesterList[index].id),
+                    onTap: () => navigateToSubjectsPage(semesterList[index].id),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
