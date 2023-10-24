@@ -45,11 +45,11 @@ class _SignupState extends State<Signup> {
               const SizedBox(
                 height: 80,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
+              const Padding(
+                padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text(
                       "Singup",
                       style: TextStyle(color: Colors.white, fontSize: 40),
