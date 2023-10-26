@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_study_material/models/subject.dart';
+import 'package:student_study_material/services/api_services.dart';
 
 class SubjectsPage extends StatefulWidget {
   const SubjectsPage({super.key});
@@ -8,6 +10,26 @@ class SubjectsPage extends StatefulWidget {
 }
 
 class _SubjectsPageState extends State<SubjectsPage> {
+  Map<String, dynamic> routeArguments = {};
+  int semesterId = 0;
+  Subject subject = Subject();
+  List<SubjectSchema> subjectsList = [];
+
+  void didChangeDependenies() {
+    super.didChangeDependencies();
+    routeArguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    semesterId = routeArguments["semesterId"];
+    initiateSubjectsList(semesterId);
+  }
+
+  void initiateSubjectsList(int semesterid) async {
+    await subject.getAllSemesters(semesterid.toString());
+    setState(() {
+      subjectsList = subject.subjectsList;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +56,9 @@ class _SubjectsPageState extends State<SubjectsPage> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12.0),
                         onTap: () {},
-                        child: Text("dsisodiods"),
+                        child: Row(
+                          children: [Image.network("src"), Text("Testing")],
+                        ),
                       ),
                     ),
                   ),
