@@ -57,7 +57,10 @@ class _SubjectsPageState extends State<SubjectsPage> {
                         borderRadius: BorderRadius.circular(12.0),
                         onTap: () {},
                         child: Row(
-                          children: [Image.network("src"), Text("Testing")],
+                          children: [
+                            Image.network(subjectsList[index].subjectPic),
+                            Text(subjectsList[index].title)
+                          ],
                         ),
                       ),
                     ),
