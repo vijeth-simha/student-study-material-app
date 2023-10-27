@@ -155,6 +155,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                       ),
                                       const SizedBox(height: 20),
                                       TextFormField(
+                                        obscureText: true,
+                                        enableSuggestions: false,
+                                        autocorrect: false,
                                         controller: passwordController,
                                         decoration: const InputDecoration(
                                             labelText: "Enter your password"),

@@ -13,6 +13,7 @@ void main() {
       '/dashboard': (context) => const Dashboard(),
       '/semesters': (context) => const SemesterPage(),
       '/subjects': (context) => const SubjectsPage(),
+      '/documents': (context) => const SubjectsPage(),
     },
   ));
 }
