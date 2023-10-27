@@ -74,17 +74,17 @@ class Subject {
 }
 
 class Document {
-  List<DocumentSchema> subjectsList = [];
+  List<DocumentSchema> documentsList = [];
 
-  Future<void> getAllSemesters(String semesterId) async {
+  Future<void> getAllDocuments(String subjectId) async {
     try {
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/semester/get-all-subjects',
-          {'subjectId': semesterId}));
+          'api/v1/semester/get-all-documents',
+          {'subjectId': subjectId}));
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
-        subjectsList = responseData
+        documentsList = responseData
             .map((semester) => DocumentSchema.fromJson(semester))
             .toList();
       } else {
