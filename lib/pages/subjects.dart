@@ -48,7 +48,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
                     width: double.maxFinite,
-                    height: 60,
+                    height: 70,
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
