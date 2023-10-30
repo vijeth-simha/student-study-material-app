@@ -53,12 +53,12 @@ class Semester {
 class Subject {
   List<SubjectSchema> subjectsList = [];
 
-  Future<void> getAllSemesters(String semesterId) async {
+  Future<void> getAllSubjects(String semesterId) async {
     try {
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
           'api/v1/semester/get-all-subjects',
-          {'subjectId': semesterId}));
+          {'semesterId': semesterId}));
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         subjectsList = responseData

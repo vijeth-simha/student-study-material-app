@@ -24,7 +24,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
   }
 
   void initiateSubjectsList(int semesterid) async {
-    await subject.getAllSemesters(semesterid.toString());
+    await subject.getAllSubjects(semesterid.toString());
     setState(() {
       subjectsList = subject.subjectsList;
     });
@@ -37,7 +37,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
         title: const Text("Subjects"),
       ),
       body: ListView.builder(
-          itemCount: 3,
+          itemCount: subjectsList.length,
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemBuilder: ((context, index) {
