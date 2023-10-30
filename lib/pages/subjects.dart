@@ -59,7 +59,21 @@ class _SubjectsPageState extends State<SubjectsPage> {
                         onTap: () {},
                         child: Row(
                           children: [
-                            Image.network(subjectsList[index].subjectPic),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                  height: double.maxFinite,
+                                  width: 50,
+                                  child: Image.network(
+                                    subjectsList[index].subjectPic,
+                                    width: double.maxFinite,
+                                    height: double.maxFinite,
+                                    fit: BoxFit.cover,
+                                  )),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Text(subjectsList[index].title)
                           ],
                         ),
