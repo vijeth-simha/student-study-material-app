@@ -15,7 +15,8 @@ class _SubjectsPageState extends State<SubjectsPage> {
   Subject subject = Subject();
   List<SubjectSchema> subjectsList = [];
 
-  void didChangeDependenies() {
+  @override
+  void didChangeDependencies() {
     super.didChangeDependencies();
     routeArguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;

@@ -4,13 +4,13 @@ class SubjectSchema {
   String createdAt;
   String? updatedAt;
   String subjectPic;
-  String shortDescription;
+  // String shortDescription;
 
   SubjectSchema(
       {required this.id,
       required this.title,
       required this.createdAt,
-      required this.shortDescription,
+      // required this.shortDescription,
       required this.subjectPic,
       required this.updatedAt});
 
@@ -19,7 +19,7 @@ class SubjectSchema {
         id: json["id"],
         title: json["title"],
         createdAt: json["createdAt"],
-        shortDescription: json["shortDescription"],
+        // shortDescription: json["shortDescription"],
         subjectPic: json["subjectPic"],
         updatedAt: json["updatedAt"]);
   }
