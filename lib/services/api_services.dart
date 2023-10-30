@@ -57,12 +57,11 @@ class Subject {
     try {
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/semester/get-all-subjects',
-          {'semesterId': semesterId}));
+          'api/v1/subject/get-all-subjects'));
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         subjectsList = responseData
-            .map((semester) => SubjectSchema.fromJson(semester))
+            .map((subject) => SubjectSchema.fromJson(subject))
             .toList();
       } else {
         throw Exception('Failed to load subjects');
