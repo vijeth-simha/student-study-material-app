@@ -84,7 +84,7 @@ class Document {
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         documentsList = responseData
-            .map((semester) => DocumentSchema.fromJson(semester))
+            .map((document) => DocumentSchema.fromJson(document))
             .toList();
       } else {
         throw Exception('Failed to load documents');
