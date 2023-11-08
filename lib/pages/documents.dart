@@ -52,20 +52,18 @@ class _DocumentsPageState extends State<DocumentsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(
-        child: const Text("Remote PDF"),
-        onPressed: () {
-          if (remotePDFpath.isNotEmpty) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PDFScreen(path: remotePDFpath),
-              ),
-            );
-          }
-        },
-      ),
+    return TextButton(
+      child: const Text("Remote PDF"),
+      onPressed: () {
+        if (remotePDFpath.isNotEmpty) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PDFScreen(path: remotePDFpath),
+            ),
+          );
+        }
+      },
     );
   }
 }
@@ -75,6 +73,8 @@ class PDFScreen extends StatefulWidget {
 
   const PDFScreen({Key? key, this.path}) : super(key: key);
 
+  @override
+  // ignore: library_private_types_in_public_api
   _PDFScreenState createState() => _PDFScreenState();
 }
 
