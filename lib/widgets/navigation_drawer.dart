@@ -32,6 +32,14 @@ class NavigationMenu extends StatelessWidget {
                 // ...
               },
             ),
+            const Divider(color: Color.fromARGB(179, 243, 0, 0)),
+            ListTile(
+              title: const Text('Profile'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
           ],
         ),
       );
