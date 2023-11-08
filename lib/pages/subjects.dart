@@ -31,6 +31,13 @@ class _SubjectsPageState extends State<SubjectsPage> {
     });
   }
 
+  void navigateToDocumentsPage(subjectId) {
+    if (mounted) {
+      Navigator.pushNamed(context, "/documents",
+          arguments: {'subjectId': subjectId});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +63,8 @@ class _SubjectsPageState extends State<SubjectsPage> {
                       color: Colors.white,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12.0),
-                        onTap: () {},
+                        onTap: () =>
+                            navigateToDocumentsPage(subjectsList[index].id),
                         child: Row(
                           children: [
                             Padding(
