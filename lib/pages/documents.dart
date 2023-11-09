@@ -53,21 +53,85 @@ class _DocumentsPageState extends State<DocumentsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: const Text("Remote PDF"),
-      onPressed: () {
-        if (remotePDFpath.isNotEmpty) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PDFScreen(path: remotePDFpath),
-            ),
-          );
-        }
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Documents"),
+      ),
+      body: ListView.builder(
+          itemCount: 2,
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemBuilder: ((context, index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: double.maxFinite,
+                    height: 70,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      color: Colors.white,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12.0),
+                        onTap: () => {
+                          if (remotePDFpath.isNotEmpty)
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PDFScreen(path: remotePDFpath),
+                                ),
+                              )
+                            }
+                        },
+                        child: const Row(
+                          children: [
+                            // Padding(
+                            //   padding: const EdgeInsets.all(8.0),
+                            //   child: SizedBox(
+                            //       height: double.maxFinite,
+                            //       width: 50,
+                            //       child: Image.network(
+                            //         subjectsList[index].subjectPic,
+                            //         width: double.maxFinite,
+                            //         height: double.maxFinite,
+                            //         fit: BoxFit.cover,
+                            //       )),
+                            // ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("One")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            );
+          })),
     );
   }
 }
+
+// TextButton(
+//       child: const Text("Remote PDF"),
+//       onPressed: () {
+//         if (remotePDFpath.isNotEmpty) {
+//           Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) => PDFScreen(path: remotePDFpath),
+//             ),
+//           );
+//         }
+//       },
+//     );
 
 class PDFScreen extends StatefulWidget {
   final String? path;
