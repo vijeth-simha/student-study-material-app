@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final apiEndpoint = dotenv.env['API_ENDPOINT'];
+final String? apiEndpoint = dotenv.env['API_ENDPOINT'];
 
-final apiRoutes = {
+final Map<dynamic, dynamic> apiRoutes = {
   "login": "/api/v1/auth/register",
 };
