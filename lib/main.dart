@@ -6,8 +6,10 @@ import 'package:student_study_material/pages/profile.dart';
 import 'package:student_study_material/pages/semesters.dart';
 import 'package:student_study_material/pages/signup.dart';
 import 'package:student_study_material/pages/subjects.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(MaterialApp(
     routes: {
       '/': (context) => const Login(),
