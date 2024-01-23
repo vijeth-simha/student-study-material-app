@@ -20,7 +20,7 @@ class _SignupState extends State<Signup> {
 
   handleSignup() async {
     Response response =
-        await post(Uri.https('$apiEndpoint', '/api/v1/auth/register'));
+        await post(Uri.https('$apiEndpoint', '$apiRoutes["login"]'));
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
       // print(responseData['accessToken']);
