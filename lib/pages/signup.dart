@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+import 'package:student_study_material/constants/constants.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -17,9 +19,8 @@ class _SignupState extends State<Signup> {
   final passwordController = TextEditingController();
 
   handleSignup() async {
-    Response response = await post(Uri.https(
-        '04dcd84a-d617-40c8-b827-84969b37bf69.mock.pstmn.io',
-        '/api/v1/auth/register'));
+    Response response =
+        await post(Uri.https('$apiEndpoint', '/api/v1/auth/register'));
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
       // print(responseData['accessToken']);
