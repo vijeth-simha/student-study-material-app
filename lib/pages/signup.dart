@@ -19,8 +19,14 @@ class _SignupState extends State<Signup> {
   final passwordController = TextEditingController();
 
   handleSignup() async {
-    Response response =
-        await post(Uri.https('$apiEndpoint', '$apiRoutes["login"]'));
+    var url = Uri.https('$apiEndpoint', '$apiRoutes["login"]');
+    print(url);
+    final Map<dynamic, dynamic> payload = {
+      "email": emailController.text,
+      "password": passwordController.text
+    };
+    print(payload);
+    Response response = await post(url, body: payload);
     if (response.statusCode == 200) {
       final Map<dynamic, dynamic> responseData = json.decode(response.body);
       // print(responseData['accessToken']);

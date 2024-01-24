@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:student_study_material/services/storage_service.dart';
+import 'package:student_study_material/constants/constants.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -41,16 +42,15 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     setState(() {
       showSpinner = true;
     });
-    Response response = await post(
-        Uri.https('658c4bf7-8882-45f0-bae2-9d3f36443e22.mock.pstmn.io',
-            '/api/v1/auth/login'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': emailController.text,
-          'password': passwordController.text,
-        }));
+    var url = Uri.https('$apiEndpoint', '$apiRoutes["login"]');
+    print(url);
+    final Map<dynamic, dynamic> payload = {
+      "email": emailController.text,
+      "password": passwordController.text
+    };
+    print(payload);
+    Response response = await post(url, body: payload);
+    print(response);
     if (response.statusCode == 200) {
       Map<String, dynamic> responseData = json.decode(response.body);
       setState(() {
