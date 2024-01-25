@@ -4,15 +4,15 @@ import 'package:student_study_material/models/categories.dart';
 import 'package:student_study_material/models/semester.dart';
 import 'package:student_study_material/models/subject.dart';
 import 'package:student_study_material/models/documents.dart';
+import 'package:student_study_material/constants/constants.dart';
 
 class Category {
   List<CategorySchema> categoriesList = [];
 
   Future<void> getAllCategories() async {
     try {
-      Response response = await get(Uri.https(
-          '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/category/get-all-categories'));
+      var url = Uri.https('$apiEndpoint', apiRoutes["category"]);
+      Response response = await get(url);
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         categoriesList = responseData
