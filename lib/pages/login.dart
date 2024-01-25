@@ -49,7 +49,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     };
     try {
       Response response = await post(url, body: payload);
-      print(response);
       if (response.statusCode == 200) {
         Map<String, dynamic> responseData = json.decode(response.body);
         setState(() {
