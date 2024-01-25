@@ -42,29 +42,31 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     setState(() {
       showSpinner = true;
     });
-    var url = Uri.https('$apiEndpoint', '$apiRoutes["login"]');
-    print(url);
+    var url = Uri.https('$apiEndpoint', apiRoutes["login"]);
     final Map<dynamic, dynamic> payload = {
       "email": emailController.text,
       "password": passwordController.text
     };
-    print(payload);
-    Response response = await post(url, body: payload);
-    print(response);
-    if (response.statusCode == 200) {
-      Map<String, dynamic> responseData = json.decode(response.body);
-      setState(() {
-        showSpinner = false;
-      });
-      if (mounted) {
-        // responseData.key = "authInfo";
-        _storageService.writeSecureJSONData(responseData, "authInfo");
-        Navigator.pushNamed(context, '/dashboard');
+    try {
+      Response response = await post(url, body: payload);
+      print(response);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseData = json.decode(response.body);
+        setState(() {
+          showSpinner = false;
+        });
+        if (mounted) {
+          // responseData.key = "authInfo";
+          _storageService.writeSecureJSONData(responseData, "authInfo");
+          Navigator.pushNamed(context, '/dashboard');
+        }
+      } else {
+        setState(() {
+          showSpinner = false;
+        });
       }
-    } else {
-      setState(() {
-        showSpinner = false;
-      });
+    } catch (e) {
+      print(e);
     }
   }
 
