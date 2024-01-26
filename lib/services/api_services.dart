@@ -37,10 +37,12 @@ class Semester {
 
   Future<void> getAllSemesters(String categoryId) async {
     try {
-      Response response = await get(Uri.https(
-          '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/semester/get-all-semesters',
-          {'categoryId': categoryId}));
+      var url = Uri.https(
+          '$apiEndpoint', apiRoutes["category"], {'categoryId': categoryId});
+      final String? accessToken = await getAccessToken();
+      Response response =
+          await get(url, headers: {'Authorization': 'Bearer $accessToken'});
+
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         semesterList = responseData
@@ -60,6 +62,8 @@ class Subject {
 
   Future<void> getAllSubjects(String semesterId) async {
     try {
+      var url = Uri.https('$apiEndpoint', apiRoutes["category"]);
+      final accessToken = await getAccessToken();
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
           'api/v1/subject/get-all-subjects'));
