@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:student_study_material/helpers/helperUtils.dart';
 import 'package:student_study_material/models/categories.dart';
 import 'package:student_study_material/models/semester.dart';
 import 'package:student_study_material/models/subject.dart';
@@ -12,9 +13,12 @@ class Category {
   Future<void> getAllCategories() async {
     try {
       var url = Uri.https('$apiEndpoint', apiRoutes["category"]);
-      Response response = await get(url);
+      final accessToken = await getAccessToken();
+      Response response =
+          await get(url, headers: {'Authorization': 'Bearer $accessToken'});
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
+        print(responseData);
         categoriesList = responseData
             .map((category) => CategorySchema.fromJson(category))
             .toList();
@@ -22,6 +26,7 @@ class Category {
         throw Exception('Failed to load categories');
       }
     } catch (e) {
+      print(e);
       throw Exception('Failed to load categories $e');
     }
   }
