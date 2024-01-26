@@ -62,8 +62,6 @@ class Subject {
 
   Future<void> getAllSubjects(String semesterId) async {
     try {
-      var url = Uri.https('$apiEndpoint', apiRoutes["category"]);
-      final accessToken = await getAccessToken();
       Response response = await get(Uri.https(
           '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
           'api/v1/subject/get-all-subjects'));
