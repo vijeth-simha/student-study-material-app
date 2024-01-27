@@ -86,10 +86,11 @@ class Document {
 
   Future<void> getAllDocuments(String subjectId) async {
     try {
-      Response response = await get(Uri.https(
-          '62c70fdf-ba4a-4fc0-9e5c-c8e6a8482754.mock.pstmn.io',
-          'api/v1/semester/get-all-documents',
-          {'subjectId': subjectId}));
+      var url = Uri.https(
+          '$apiEndpoint', apiRoutes["category"], {'subjectId': subjectId});
+      final String? accessToken = await getAccessToken();
+      Response response =
+          await get(url, headers: {'Authorization': 'Bearer $accessToken'});
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body);
         documentsList = responseData
