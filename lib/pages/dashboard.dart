@@ -1,5 +1,6 @@
 // import 'package:student_study_material/services/storage_service.dart';
 import 'package:flutter/material.dart';
+import 'package:student_study_material/constants/constants.dart';
 import 'package:student_study_material/models/categories.dart';
 import 'package:student_study_material/services/api_services.dart';
 import 'package:student_study_material/widgets/navigation_drawer.dart';
@@ -70,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           ClipRRect(
                             child: Image.network(
-                              'https://dashboard.vijethsimha.com/dynamic/category-images/${categoriesList[index].categoryPic}',
+                              '${imageURL["category"]}/${categoriesList[index].categoryPic}',
                               width: double.maxFinite,
                               height: 130,
                               fit: BoxFit.cover,

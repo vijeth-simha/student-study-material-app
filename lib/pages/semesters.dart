@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_study_material/constants/constants.dart';
 import 'package:student_study_material/models/semester.dart';
 import 'package:student_study_material/services/api_services.dart';
 
@@ -73,7 +74,7 @@ class _SemesterPageState extends State<SemesterPage> {
                         children: [
                           ClipRRect(
                             child: Image.network(
-                              semesterList[index].semesterPic,
+                              '${imageURL["semester"]}/${semesterList[index].semesterPic}',
                               width: double.maxFinite,
                               height: 110,
                               fit: BoxFit.cover,

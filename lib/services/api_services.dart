@@ -36,10 +36,13 @@ class Semester {
   List<SemesterSchema> semesterList = [];
 
   Future<void> getAllSemesters(String categoryId) async {
+    print(categoryId);
+
     try {
       var url = Uri.https(
-          '$apiEndpoint', apiRoutes["category"], {'categoryId': categoryId});
+          '$apiEndpoint', apiRoutes["semester"], {'categoryId': categoryId});
       final String? accessToken = await getAccessToken();
+
       Response response =
           await get(url, headers: {'Authorization': 'Bearer $accessToken'});
 
