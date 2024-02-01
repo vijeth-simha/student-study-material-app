@@ -12,7 +12,7 @@ final Map<dynamic, dynamic> apiRoutes = {
   "document": "api/v1/document/get-all-documents",
 };
 
-final Map<dynamic, dynamic> imageURL = {
+final Map<String, String> imageURL = {
   "category": '$apiImageURLEndpoint/dynamic/category-images',
   "semester": '$apiImageURLEndpoint/dynamic/semester-images',
   "subject": '$apiImageURLEndpoint/dynamic/subject-images',
