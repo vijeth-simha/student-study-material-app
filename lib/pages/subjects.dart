@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_study_material/constants/constants.dart';
 import 'package:student_study_material/models/subject.dart';
 import 'package:student_study_material/services/api_services.dart';
 
@@ -73,7 +74,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                   height: double.maxFinite,
                                   width: 50,
                                   child: Image.network(
-                                    subjectsList[index].subjectPic,
+                                    '${imageURL["subject"]}/${subjectsList[index].subjectPic}',
                                     width: double.maxFinite,
                                     height: double.maxFinite,
                                     fit: BoxFit.cover,
