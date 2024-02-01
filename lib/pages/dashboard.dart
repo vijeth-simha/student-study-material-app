@@ -70,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           ClipRRect(
                             child: Image.network(
-                              categoriesList[index].categoryPic,
+                              'https://dashboard.vijethsimha.com/dynamic/category-images/${categoriesList[index].categoryPic}',
                               width: double.maxFinite,
                               height: 130,
                               fit: BoxFit.cover,
