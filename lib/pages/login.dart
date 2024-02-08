@@ -18,6 +18,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   final StorageService _storageService = StorageService();
   late AnimationController controller;
   bool showSpinner = false;
+  bool showError = false;
 
   @override
   void initState() {
@@ -62,10 +63,13 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       } else {
         setState(() {
           showSpinner = false;
+          showError = true;
         });
       }
     } catch (e) {
-      print(e);
+      setState(() {
+        showError = true;
+      });
     }
   }
 
