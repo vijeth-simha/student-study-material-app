@@ -188,52 +188,63 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                                 BorderRadius.circular(50),
                                             color: Colors.blue[900]),
                                         child: Center(
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                foregroundColor: Colors.white,
-                                                backgroundColor:
-                                                    Colors.blue[900],
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            60.0)),
-                                                fixedSize:
-                                                    const Size(500.0, 10.0)),
-                                            onPressed: () {
-                                              if (formKey.currentState!
-                                                  .validate()) {
-                                                handleLogin();
-                                              }
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                showSpinner
-                                                    ? SizedBox(
-                                                        height: 25.0,
-                                                        width: 25.0,
-                                                        child: Center(
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            value: controller
-                                                                .value,
-                                                            semanticsLabel:
-                                                                'Circular progress indicator',
-                                                            strokeWidth: 2.0,
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Container(),
-                                                Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            left: 10.0),
-                                                    child: Text(showSpinner
-                                                        ? 'Submitting..'
-                                                        : 'Login')),
-                                              ],
-                                            ),
+                                          child: Column(
+                                            children: [
+                                              showError
+                                                  ? const Text('data')
+                                                  : const Text('data'),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                    backgroundColor:
+                                                        Colors.blue[900],
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        60.0)),
+                                                    fixedSize: const Size(
+                                                        500.0, 10.0)),
+                                                onPressed: () {
+                                                  if (formKey.currentState!
+                                                      .validate()) {
+                                                    handleLogin();
+                                                  }
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    showSpinner
+                                                        ? SizedBox(
+                                                            height: 25.0,
+                                                            width: 25.0,
+                                                            child: Center(
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                value:
+                                                                    controller
+                                                                        .value,
+                                                                semanticsLabel:
+                                                                    'Circular progress indicator',
+                                                                strokeWidth:
+                                                                    2.0,
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : Container(),
+                                                    Container(
+                                                        margin: const EdgeInsets
+                                                            .only(left: 10.0),
+                                                        child: Text(showSpinner
+                                                            ? 'Submitting..'
+                                                            : 'Login')),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       )
