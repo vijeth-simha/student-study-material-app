@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -64,6 +66,12 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         setState(() {
           showSpinner = false;
           showError = true;
+        });
+        Duration timeDelay = const Duration(milliseconds: 3000);
+        return Timer(timeDelay, () {
+          setState(() {
+            showError = false;
+          });
         });
       }
     } catch (e) {
@@ -179,74 +187,84 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                       const SizedBox(
                                         height: 40,
                                       ),
-                                      Container(
-                                        height: 50,
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 50),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            color: Colors.blue[900]),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              showError
-                                                  ? const Text('data')
-                                                  : const Text('data'),
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    backgroundColor:
-                                                        Colors.blue[900],
-                                                    shape:
-                                                        RoundedRectangleBorder(
+                                      Column(
+                                        children: [
+                                          showError
+                                              ? const Text(
+                                                  'Kindly enter valid credentials!.',
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                )
+                                              : Container(),
+                                          const SizedBox(height: 10),
+                                          Container(
+                                            height: 50,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 50),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                color: Colors.blue[900]),
+                                            child: Center(
+                                              child: Column(
+                                                children: [
+                                                  ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        foregroundColor:
+                                                            Colors.white,
+                                                        backgroundColor:
+                                                            Colors.blue[900],
+                                                        shape: RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         60.0)),
-                                                    fixedSize: const Size(
-                                                        500.0, 10.0)),
-                                                onPressed: () {
-                                                  if (formKey.currentState!
-                                                      .validate()) {
-                                                    handleLogin();
-                                                  }
-                                                },
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    showSpinner
-                                                        ? SizedBox(
-                                                            height: 25.0,
-                                                            width: 25.0,
-                                                            child: Center(
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                value:
-                                                                    controller
+                                                        fixedSize: const Size(
+                                                            500.0, 10.0)),
+                                                    onPressed: () {
+                                                      if (formKey.currentState!
+                                                          .validate()) {
+                                                        handleLogin();
+                                                      }
+                                                    },
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        showSpinner
+                                                            ? SizedBox(
+                                                                height: 25.0,
+                                                                width: 25.0,
+                                                                child: Center(
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    value: controller
                                                                         .value,
-                                                                semanticsLabel:
-                                                                    'Circular progress indicator',
-                                                                strokeWidth:
-                                                                    2.0,
-                                                              ),
-                                                            ),
-                                                          )
-                                                        : Container(),
-                                                    Container(
-                                                        margin: const EdgeInsets
-                                                            .only(left: 10.0),
-                                                        child: Text(showSpinner
-                                                            ? 'Submitting..'
-                                                            : 'Login')),
-                                                  ],
-                                                ),
+                                                                    semanticsLabel:
+                                                                        'Circular progress indicator',
+                                                                    strokeWidth:
+                                                                        2.0,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Container(),
+                                                        Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 10.0),
+                                                            child: Text(showSpinner
+                                                                ? 'Submitting..'
+                                                                : 'Login')),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       )
                                     ],
                                   )),
